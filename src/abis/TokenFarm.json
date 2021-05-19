@@ -12,7 +12,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/firee/Desktop/Personal Projects/defi-app/src/contracts/TokenFarm.sol\":\"TokenFarm\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/firee/Desktop/Personal Projects/defi-app/src/contracts/TokenFarm.sol\":{\"keccak256\":\"0x4ccccacddd475dad0eb37c569264ad25f3ea98991c41b35f143ccbf7527a89f3\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://97a410642f4465c7c2e626698d19aa4f28777c5616ce2b9756c02157bcd0438c\",\"dweb:/ipfs/QmWdKWR91hyTy5Tv6pDCstxPi1UpMEkSfitakTNoHcpeDp\"]}},\"version\":1}",
@@ -208,9 +209,17 @@
     "name": "solc",
     "version": "0.7.6+commit.7338295f.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0xF84E5a5c52e188d084884Bc9E49E90E5Fd6217D8",
+      "transactionHash": "0xc6226c59018f57b73909ab1809ee079e24eaaa18328ab11c8408b08b5257b817"
+    }
+  },
   "schemaVersion": "3.4.1",
-  "updatedAt": "2021-05-19T01:29:06.552Z",
+  "updatedAt": "2021-05-19T01:50:46.978Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},
