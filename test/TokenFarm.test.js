@@ -1,5 +1,7 @@
 // Mocha testing framework and Chai assertion library come bundled with Truffle
 
+const { assert } = require('chai')
+
 /* eslint-disable no-undef */
 require('chai')
   .use(require('chai-as-promised'))
@@ -49,6 +51,10 @@ contract(TokenFarm, ([owner, investor]) => {
     it('has a name', async () => {
       const name = await tokenFarm.name()
       assert.equal(name, 'Dapp Token Farm')
+    })
+    it('contract has tokens', async () => {
+      let balance = await dappToken.balanceOf(tokenFarm.address)
+      assert.equal(balance.toString(), tokens('1000000'))
     })
   })
 })
