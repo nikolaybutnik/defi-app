@@ -16,6 +16,7 @@ contract TokenFarm {
 
     mapping(address => uint256) public stakingBalance;
     mapping(address => bool) public hasStaked;
+    mapping(address => bool) public isStaking;
 
     constructor(DappToken _dappToken, DaiToken _daiToken) {
         // above: type, variable name. The type is the smart contract itself.
@@ -29,7 +30,17 @@ contract TokenFarm {
         // transfer Mock Dai tokens to this contract for staking
         // 'this' corresponds to the smart contract itself
         daiToken.transferFrom(msg.sender, address(this), _amount);
+
         // update staking balance
         stakingBalance[msg.sender] = stakingBalance[msg.sender] + _amount;
+
+        // add users to stakers array if they haven't already staked
+        if (!hasStaked[msg.sender]) {
+            stakers.push(msg.sender);
+        }
+
+        // update staking status
+        isStaking[msg.sender] = true;
+        hasStaked[msg.sender] = true;
     }
 }
