@@ -8,6 +8,7 @@ import "./DaiToken.sol";
 contract TokenFarm {
     // assign state variables
     string public name = "Dapp Token Farm";
+    address public owner;
     DappToken public dappToken;
     DaiToken public daiToken;
 
@@ -23,10 +24,15 @@ contract TokenFarm {
         // this function will only run once when the contrct is deployed to the blockchain
         dappToken = _dappToken;
         daiToken = _daiToken;
+        owner = msg.sender;
     }
 
     // stake tokens (deposit)
     function stakeTokens(uint256 _amount) public {
+        // require amount being staked ot be greater than 0
+        // if the condition evaluates to true, the function will continue running.
+        require(_amount > 0, "amount can't be 0");
+
         // transfer Mock Dai tokens to this contract for staking
         // 'this' corresponds to the smart contract itself
         daiToken.transferFrom(msg.sender, address(this), _amount);
@@ -42,5 +48,20 @@ contract TokenFarm {
         // update staking status
         isStaking[msg.sender] = true;
         hasStaked[msg.sender] = true;
+    }
+
+    // issue tokens (interest)
+    function issueTokens() public {
+        // only allow owner to call this function
+        require(msg.sender == owner, "caller must be the owner");
+
+        // issue tokens to all stakers
+        for (uint256 i = 0; i < stakers.length; i++) {
+            address recipient = stakers[i];
+            uint256 balance = stakingBalance[recipient];
+            if (balance > 0) {
+                dappToken.transfer(recipient, balance);
+            }
+        }
     }
 }
