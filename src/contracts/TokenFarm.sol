@@ -64,4 +64,22 @@ contract TokenFarm {
             }
         }
     }
+
+    // unstake tokens (withdraw)
+    function unstakeTokens() public {
+        // fetch staking balance
+        uint256 balance = stakingBalance[msg.sender];
+
+        // require amount to be greater than 0
+        require(balance > 0, "staking balance can't be 0");
+
+        // transfer mDai tokens to this contract for staking
+        daiToken.transfer(msg.sender, balance);
+
+        // reset staking balance
+        stakingBalance[msg.sender] = 0;
+
+        // update staking status
+        isStaking[msg.sender] = false;
+    }
 }
