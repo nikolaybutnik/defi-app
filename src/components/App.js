@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import './App.css'
 import Web3 from 'web3'
 import DaiToken from '../abis/DaiToken.json'
+import DappToken from '../abis/DappToken.json'
 
 class App extends Component {
   async componentDidMount() {
@@ -26,7 +27,23 @@ class App extends Component {
         .call()
       this.setState({ daiTokenBalance: daiTokenBalance.toString() })
     } else {
-      window.alert('DaiToken contract not deployed to detected network')
+      window.alert('Dai Token contract not deployed to detected network')
+    }
+
+    // load Dapp Token
+    const dappTokenData = DappToken.networks[networkId]
+    if (dappTokenData) {
+      const dappToken = new web3.eth.Contract(
+        DappToken.abi,
+        dappTokenData.address
+      )
+      this.setState({ dappToken })
+      let dappTokenBalance = await dappToken.methods
+        .balanceOf(this.state.account)
+        .call()
+      this.setState({ dappTokenBalance: dappTokenBalance.toString() })
+    } else {
+      window.alert('Dapp Token contract not deployed to detected network')
     }
   }
 
@@ -69,6 +86,7 @@ class App extends Component {
               style={{ maxWidth: '600px' }}
             >
               <div className="content mr-auto ml-auto">
+                {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
                 <a
                   href="http://www.dappuniversity.com/bootcamp"
                   target="_blank"
