@@ -103,7 +103,13 @@ class App extends Component {
         </p>
       )
     } else {
-      content = <Main />
+      content = (
+        <Main
+          daiTokenBalance={this.state.daiTokenBalance}
+          dappTokenBalance={this.state.dappTokenBalance}
+          stakingBalance={this.state.stakingBalance}
+        />
+      )
     }
 
     return (
