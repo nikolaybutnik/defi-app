@@ -89,7 +89,7 @@ class App extends Component {
       tokenFarm: {},
       daiTokenBalance: '0',
       dappTokenBalance: '0',
-      stakinBalance: '0',
+      stakingBalance: '0',
       loading: true,
     }
   }
