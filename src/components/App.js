@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Main from '../components/Main'
 import Navbar from './Navbar'
 import './App.css'
 import Web3 from 'web3'
@@ -94,6 +95,17 @@ class App extends Component {
   }
 
   render() {
+    let content
+    if (this.state.loading) {
+      content = (
+        <p id="loader" className="text-center">
+          Loading...
+        </p>
+      )
+    } else {
+      content = <Main />
+    }
+
     return (
       <div>
         <Navbar account={this.state.account} />
@@ -112,7 +124,7 @@ class App extends Component {
                   rel="noopener noreferrer"
                 ></a>
 
-                <h1>Hello, World!</h1>
+                {content}
               </div>
             </main>
           </div>
